@@ -147,7 +147,13 @@ $(function()
 
         var date = new Date();
 
-        resultDiv.text("Result: " + roll + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+        var resultSpan = $("<span>")
+                            .addClass("result_number")
+                            .text(roll);
+
+        resultDiv.text("Result: ");
+        resultDiv.append(resultSpan);
+        resultDiv.append(" - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
 
         DrawVisualizer();
     }
