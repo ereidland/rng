@@ -147,7 +147,9 @@ $(function()
 
         var roll = currentLottery.Draw();
 
-        resultDiv.text("Result: " + roll);
+        var date = new Date();
+
+        resultDiv.text("Result: " + roll + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
 
         DrawVisualizer();
     }
