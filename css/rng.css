@@ -1,7 +1,10 @@
 body
 {
     font-family: "Courier New Sans Serif";
-    font-size: 24px;
+    font-size: 32px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button
@@ -11,10 +14,28 @@ button
     border: 1px solid black;
 
     font-family: "Courier New Sans Serif";
-    font-size: 30px;
+    font-size: 64px;
+
+    width: 200px;
+}
+
+.result_number
+{
+    font-size: 128px;
+}
+
+.rng_center
+{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #visualize
 {
     font-size: 10px;
+}
+
+#rng_body
+{
+    width: 400px;
 }
