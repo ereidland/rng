@@ -43,7 +43,6 @@ function Lottery(existing)
     this.Draw = function()
     {
         var ticket = Math.min(_totalTickets - 1, Math.round(Math.random()*_totalTickets));
-        console.log(_totalTickets + ", " + ticket);
         var currentTicket = 0;
         var drawnItem = null;
         _items = _.filter(_items, function(item)
@@ -116,7 +115,6 @@ $(function()
 
     $(document).keydown(function(event)
     {
-        console.log(event.which);
         if (event.which == 86) //v.
             ToggleVisualizer();
         else if (event.which == 32)
