@@ -47,7 +47,7 @@ function Lottery(existing)
         var drawnItem = null;
         _items = _.filter(_items, function(item)
         {
-            if (_.isNull(drawnItem) && currentTicket + item.GetTickets() >= ticket && item.CanUseTicket())
+            if (_.isNull(drawnItem) && currentTicket + item.GetTickets() > ticket && item.CanUseTicket())
             {
                 var remaining = item.UseTicket();
                 drawnItem = item.GetObject();
