@@ -42,19 +42,19 @@ function Lottery(existing)
 
     this.Draw = function()
     {
-        var ticket = Math.min(_totalTickets - 1, Math.round(Math.random()*_totalTickets));
+        var ticket = Math.min(_totalTickets - 1, Math.floor(Math.random()*_totalTickets));
         var currentTicket = 0;
         var drawnItem = null;
         _items = _.filter(_items, function(item)
         {
-            if (_.isNull(drawnItem) && currentTicket + item.GetTickets() > ticket && item.CanUseTicket())
+            currentTicket += item.GetTickets();
+            if (_.isNull(drawnItem) && currentTicket > ticket && item.CanUseTicket())
             {
                 var remaining = item.UseTicket();
                 drawnItem = item.GetObject();
                 _totalTickets--;
                 return remaining > 0;
             }
-            currentTicket += item.GetTickets();
             return true;
         }, this);
 
@@ -88,6 +88,14 @@ $(function()
         11: 2,
         12: 1
     };
+
+    var ticketMultiplier = 2;
+    var resetThreshold = (_.size(diceNumbers)*ticketMultiplier)/2;
+
+    _.each(diceNumbers, function(value, key)
+    {
+        diceNumbers[key] = value*ticketMultiplier;
+    });
 
     var baseLottery = new Lottery();
 
@@ -140,7 +148,7 @@ $(function()
 
     function RollDice()
     {
-        if (currentLottery.GetTotalTickets() <= 0)
+        if (currentLottery.GetTotalTickets() <= resetThreshold)
             ResetRolls();
 
         var roll = currentLottery.Draw();
